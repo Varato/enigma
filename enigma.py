@@ -65,12 +65,14 @@ class enigma:
 
     def set_wheel(self, wheel_read):
         if isinstance(wheel_read, list) and len(wheel_read) == 3 and\
-         0<=wheel_read[0]<=26 and 0<=wheel_read[1]<=26 and 0<=wheel_read[2]<=26:
+         0<=wheel_read[0]<=25 and 0<=wheel_read[1]<=25 and 0<=wheel_read[2]<=25:
             self.__wheel_read = wheel_read
             self.__accum = self.__wheel_read[0]*26*26 + self.__wheel_read[1]*26 + self.__wheel_read[2]
             self.__r = [[(self.__wheel_read[0] + i)%26 for i in range(26) ],
                         [(self.__wheel_read[1] + i)%26 for i in range(26) ],
                         [(self.__wheel_read[2] + i)%26 for i in range(26) ]]
+        else:
+        	raise ValueError("wheel_read must be a list with three integers between 0 and 25")
 
     def press(self, char_in):
         if isinstance(char_in, str) and len(char_in) == 1:
